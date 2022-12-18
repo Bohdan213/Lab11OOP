@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class MailSender {
-    private String greeting = "Happy birthday";
+    private final String greeting = "Happy birthday";
     public void sendMail(MailInfo info) throws MailjetSocketTimeoutException, MailjetException {
         MailjetClient client;
         MailjetRequest request;
@@ -29,7 +29,7 @@ public class MailSender {
                                                 .put("Name", info.getClient().getName())))
                                 .put(Emailv31.Message.SUBJECT, "Greetings from Mailjet.")
                                 .put(Emailv31.Message.TEXTPART, "My first Mailjet email")
-                                .put(Emailv31.Message.HTMLPART, "<h3>Dear passenger 1, welcome to <a href='https://www.mailjet.com/'>Mailjet</a>!</h3><br />May the delivery force be with you!")
+                                .put(Emailv31.Message.HTMLPART, greeting)
                                 .put(Emailv31.Message.CUSTOMID, "AppGettingStartedTest")));
         response = client.post(request);
         System.out.println(response.getStatus());
